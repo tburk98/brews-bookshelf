@@ -8,7 +8,7 @@ export const books = [
     shortDescription:
       "Range makes a compelling case for spreading your skills far and wide. You might remember Range from our Pumpkin Spice Author Series, but we're bringing it back because you really can't miss this one.",
     authors: ["David Epstein"],
-    tags: ["Personal Development", "Pscyhology"],
+    tags: ["Personal Development", "Psychology"],
   },
   {
     title: "Option B",
