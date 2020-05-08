@@ -38,15 +38,18 @@ const useStyles = makeStyles((theme) => ({
     left: 0,
   },
   container: {
-    backgroundColor: fade(theme.palette.background.default, 0.8),
+    backgroundColor: fade(theme.palette.background.default, 1),
     width: "calc(100% + 35px)",
     zIndex: 12,
     position: "fixed",
     height: 105,
-    backdropFilter: "saturate(180%) blur(5px)",
-    WebkitBackdropFilter: "saturate(180%) blur(15px)",
     marginLeft: -35,
+    "@supports (-webkit-backdrop-filter: saturate(180%) blur(10px))": {
+      backgroundColor: fade(theme.palette.background.default, 0.8),
+      WebkitBackdropFilter: "saturate(180%) blur(15px)",
+    },
   },
+
   tagBar: {
     height: 94,
     display: "flex",

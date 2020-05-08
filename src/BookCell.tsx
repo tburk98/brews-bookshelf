@@ -14,7 +14,6 @@ interface BookCellProps {
 
 const useStyles = makeStyles((theme) => ({
   bookImage: {
-    zIndex: -1,
     display: "block",
     width: "91%",
     maxWidth: 160,
@@ -91,7 +90,7 @@ export default function BookCell(props: BookCellProps) {
     <StyledBookTile className={classes.bookTile} item container md={6} xl={4}>
       <motion.div
         animate={{ opacity: [0, 1], y: [20, 0] }}
-        transition={{ ease: "easeOut", duration: 0.5 }}
+        transition={{ ease: [0.6, -0.05, 0.01, 0.99], duration: 0.5 }}
       >
         <Grid container spacing={2}>
           <Grid item container xs={5}>

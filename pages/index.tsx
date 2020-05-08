@@ -36,6 +36,8 @@ const StyledDivider = withStyles({
     marginLeft: "-16px",
     height: 1.5,
     marginTop: 105,
+    position: "relative",
+    zIndex: 10,
   },
 })(Divider);
 
