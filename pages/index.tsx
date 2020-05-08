@@ -1,6 +1,6 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { Button, Grid, Container } from "@material-ui/core";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { Grid, Divider } from "@material-ui/core";
 import ShelfHeader from "../src/ShelfHeader";
 import Sidebar from "../src/Sidebar";
 import BookGrid from "../src/BookGrid";
@@ -13,8 +13,9 @@ const useStyles = makeStyles({
     height: "100vh",
   },
   bookGrid: {
+    marginTop: -105,
+    paddingTop: 105,
     overflowY: "auto",
-    paddingTop: 40,
     scrollbarWidth: "none",
     "&::-webkit-scrollbar": {
       width: 0,
@@ -29,6 +30,15 @@ const useStyles = makeStyles({
   },
 });
 
+const StyledDivider = withStyles({
+  root: {
+    width: "calc(100% + 16px)",
+    marginLeft: "-16px",
+    height: 1.5,
+    marginTop: 105,
+  },
+})(Divider);
+
 const Home = () => {
   const classes = useStyles();
 
@@ -39,6 +49,7 @@ const Home = () => {
           <Grid item container lg={9} xl={10} alignContent="flex-start">
             <Grid item xs={12}>
               <ShelfHeader />
+              <StyledDivider />
             </Grid>
             <Grid item xs={12} className={classes.bookGrid}>
               <BookGrid />

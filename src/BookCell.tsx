@@ -14,6 +14,7 @@ interface BookCellProps {
 
 const useStyles = makeStyles((theme) => ({
   bookImage: {
+    zIndex: -1,
     display: "block",
     width: "91%",
     maxWidth: 160,

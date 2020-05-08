@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
     width: "auto",
     zIndex: 11,
     marginBottom: 0,
+    marginLeft: 35,
   },
   background: {
     // backgroundColor: fade(theme.palette.background.default, 0.7),
@@ -37,9 +38,14 @@ const useStyles = makeStyles((theme) => ({
     left: 0,
   },
   container: {
-    background: theme.palette.background.default,
-    width: "100%",
-    zIndex: 15,
+    backgroundColor: fade(theme.palette.background.default, 0.8),
+    width: "calc(100% + 35px)",
+    zIndex: 12,
+    position: "fixed",
+    height: 105,
+    backdropFilter: "saturate(180%) blur(5px)",
+    WebkitBackdropFilter: "saturate(180%) blur(15px)",
+    marginLeft: -35,
   },
   tagBar: {
     height: 94,
@@ -62,15 +68,6 @@ const useStyles = makeStyles((theme) => ({
     height: 28,
   },
 }));
-
-const StyledDivider = withStyles({
-  root: {
-    marginTop: 12,
-    width: "calc(100% + 16px)",
-    marginLeft: "-16px",
-    height: 1.5,
-  },
-})(Divider);
 
 export default function ShelfHeader() {
   const classes = useStyles();
@@ -115,7 +112,6 @@ export default function ShelfHeader() {
           )}
         </UserContext.Consumer>
       </div>
-      <StyledDivider />
     </div>
   );
 }
