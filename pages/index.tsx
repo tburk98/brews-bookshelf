@@ -13,7 +13,7 @@ const useStyles = makeStyles({
     height: "100vh",
   },
   bookGrid: {
-    marginTop: -105,
+    marginTop: -85,
     paddingTop: 105,
     overflowY: "auto",
     scrollbarWidth: "none",
@@ -35,7 +35,7 @@ const StyledDivider = withStyles({
     width: "calc(100% + 16px)",
     marginLeft: "-16px",
     height: 1.5,
-    marginTop: 105,
+    marginTop: 95,
     position: "relative",
     zIndex: 10,
   },

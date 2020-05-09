@@ -23,26 +23,19 @@ const monthNames = [
 
 const useStyles = makeStyles((theme) => ({
   title: {
-    margin: theme.spacing(6, 0, 3),
+    margin: theme.spacing(5, 0, 3),
     width: "auto",
     zIndex: 11,
     marginBottom: 0,
     marginLeft: 35,
-  },
-  background: {
-    // backgroundColor: fade(theme.palette.background.default, 0.7),
-    // WebkitBackdropFilter: "blur(45px)",
-    width: "100%",
-    zIndex: 10,
-    height: 94,
-    left: 0,
+    fontSize: "1.8rem",
   },
   container: {
     backgroundColor: fade(theme.palette.background.default, 1),
     width: "calc(100% + 35px)",
     zIndex: 12,
     position: "fixed",
-    height: 105,
+    height: 95,
     marginLeft: -35,
     "@supports (-webkit-backdrop-filter: saturate(180%) blur(10px))": {
       backgroundColor: fade(theme.palette.background.default, 0.8),
@@ -51,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   tagBar: {
-    height: 94,
+    height: 85,
     display: "flex",
     justifyContent: "flex-start",
     alignItems: "flex-end",
@@ -80,20 +73,11 @@ export default function ShelfHeader() {
       <div className={classes.tagBar}>
         <Typography className={classes.title} variant="h5">
           <UserContext.Consumer>
-            {({ currentDate, maxDate }) => {
-              if (
-                currentDate.getMonth() === maxDate.getMonth() &&
-                currentDate.getFullYear() == maxDate.getFullYear()
-              ) {
-                return "Latest Recommendations";
-              } else {
-                return (
-                  monthNames[currentDate.getMonth()] +
-                  " " +
-                  currentDate.getFullYear()
-                );
-              }
-            }}
+            {({ currentDate, maxDate }) =>
+              monthNames[currentDate.getMonth()] +
+              " " +
+              currentDate.getFullYear()
+            }
           </UserContext.Consumer>
         </Typography>
         <UserContext.Consumer>

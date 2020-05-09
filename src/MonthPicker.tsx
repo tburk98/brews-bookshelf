@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import { Grid, TextField } from "@material-ui/core";
 import { DatePicker } from "@material-ui/pickers";
@@ -11,24 +11,30 @@ import Next from "@material-ui/icons/ChevronRight";
 
 const useStyles = makeStyles((theme) => ({
   title: {
-    margin: theme.spacing(3, 0, 2),
-    width: "auto",
+    margin: theme.spacing(3, 0, 1),
     fontSize: "1.1rem",
+    width: "100%",
   },
 }));
+
+const StyledDatePicker = withStyles({
+  root: {
+    maxWidth: "100%",
+  },
+})(DatePicker);
 
 export default function MonthPicker() {
   const classes = useStyles();
 
   return (
     <Grid item container>
-      <Typography className={classes.title} variant="h5">
-        Filter by Month
-      </Typography>
       <Grid item container>
+        <Typography className={classes.title} variant="h5">
+          Select Month
+        </Typography>
         <UserContext.Consumer>
           {({ minDate, maxDate, setDate, currentDate }) => (
-            <DatePicker
+            <StyledDatePicker
               variant="inline"
               openTo="month"
               views={["year", "month"]}

@@ -13,7 +13,7 @@ import TagPicker from "./TagPicker";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
-    margin: theme.spacing(6, 0, 3),
+    margin: theme.spacing(5, 0, 3),
     height: "100vh",
     // maxWidth: "315px",
     // minWidth: "290px",
@@ -33,6 +33,15 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     width: "100%",
   },
+  brewsBookshelf: {
+    fontFamily: "Literata",
+    fontSize: "2.3rem",
+    lineHeight: "2.6rem",
+  },
+  desc: {
+    maxWidth: 200,
+    marginTop: 8,
+  },
 }));
 
 export default function Sidebar() {
@@ -41,14 +50,14 @@ export default function Sidebar() {
     <Grid item container className={classes.root}>
       <Grid container direction="column" spacing={1}>
         <Grid item>
-          <Typography variant="h4">
+          <Typography variant="h4" className={classes.brewsBookshelf}>
             Brew's
             <br />
             Bookshelf
           </Typography>
         </Grid>
         <Grid item>
-          <Typography variant="body2">
+          <Typography variant="body2" className={classes.desc}>
             Brew staff's top recommended books, published every month.
           </Typography>
         </Grid>
