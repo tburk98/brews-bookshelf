@@ -33,13 +33,13 @@ export default function MonthPicker() {
           Select Month
         </Typography>
         <UserContext.Consumer>
-          {({ minDate, maxDate, setDate, currentDate }) => (
+          {({ minDate, maxDate, updateBooks, currentDate }) => (
             <StyledDatePicker
               variant="inline"
               openTo="month"
               views={["year", "month"]}
               value={currentDate}
-              onChange={(e) => setDate(e)}
+              onChange={(e) => updateBooks(e)}
               autoOk
               minDate={minDate}
               maxDate={maxDate}

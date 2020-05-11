@@ -51,7 +51,7 @@ export default function TagPicker() {
                       color="primary"
                       label={tag}
                       className={classes.tag}
-                      onClick={() => toggleTag(tag, currentDate)}
+                      onClick={() => toggleTag(tag, tags)}
                     />
                   </li>
                 );

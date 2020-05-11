@@ -13,8 +13,8 @@ const initialState = {
   maxDate: new Date(),
   darkMode: false,
   toggleTheme: () => {},
-  toggleTag: (title: string, currentDate: Date) => {},
-  setDate: (newDate: Date) => {},
+  toggleTag: (title: string, tags: Set<any>) => {},
+  updateBooks: (newDate: Date) => {},
 };
 
 export const UserContext = createContext(initialState);
@@ -27,50 +27,47 @@ export const UserContextProvider = (props) => {
     }));
   };
 
-  const toggleTag = (title: string, currentDate: Date) => {
-    let temp = state.tags;
+  const toggleTag = (title: string, tags: Set<any>) => {
+    let temp = new Set(tags);
+    console.log(state.tags);
     if (temp.has(title)) {
       temp.delete(title);
     } else {
       temp.add(title);
     }
-    updateBooks(temp, currentDate);
+
+    setState((state) => ({
+      ...state,
+      tags: temp,
+    }));
   };
 
-  const setDate = (newDate: Date) => {
-    console.log(newDate);
-    updateBooks(state.tags, newDate);
-  };
-
-  const updateBooks = (tags: Set<any>, date: Date) => {
+  const updateBooks = (date: Date) => {
     var currentBooks = state.books;
+    var newTags = new Set();
 
-    console.log(" DATE!!! = " + date);
     currentBooks = currentBooks.filter(
       (book) =>
         book.recommendDate.month === date.getMonth() &&
         book.recommendDate.year === date.getFullYear()
     );
 
-    if (tags.size > 0) {
-      currentBooks = currentBooks.filter((book: IBook) => {
-        let commonTags = book.tags.filter((x) => tags.has(x));
-        return commonTags.length > 0;
-      });
-    }
+    currentBooks.forEach((b) => {
+      b.tags.forEach(newTags.add, newTags);
+    });
 
     setState((state) => ({
       ...state,
+      availableTags: Array.from(newTags),
       currentDate: date,
-      tags: tags,
+      tags: new Set(),
       currentBooks: currentBooks,
     }));
   };
 
-  let allTags = new Set();
+  let newTags = new Set();
   let dates = [];
   books.forEach((b) => {
-    b.tags.forEach(allTags.add, allTags);
     dates.push(new Date(b.recommendDate.year, b.recommendDate.month));
   });
 
@@ -83,17 +80,21 @@ export const UserContextProvider = (props) => {
       book.recommendDate.year === maxDate.getFullYear()
   );
 
+  currentBooks.forEach((b) => {
+    b.tags.forEach(newTags.add, newTags);
+  });
+
   const [state, setState] = React.useState({
     ...initialState,
     books: books,
     currentBooks: currentBooks,
-    availableTags: Array.from(allTags),
+    availableTags: Array.from(newTags),
     currentDate: maxDate,
     minDate: minDate,
     maxDate: new Date(maxDate.getFullYear(), maxDate.getMonth() + 1, 0),
     toggleTheme: toggleTheme,
     toggleTag: toggleTag,
-    setDate: setDate,
+    updateBooks: updateBooks,
   });
 
   return (

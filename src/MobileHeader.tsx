@@ -17,11 +17,11 @@ const useStyles = makeStyles((theme) => ({
   brewsBookshelf: {
     fontFamily: "Literata",
     marginTop: 20,
-    fontSize: "1.5rem",
+    fontSize: "1.2rem",
   },
   dateTextField: {
     fontWeight: 600,
-    fontSize: "1.4rem",
+    fontSize: "1.5rem",
     marginTop: 28,
   },
   root: {
@@ -64,13 +64,13 @@ export default function MobileHeader() {
         <Grid item container xs={12}>
           <Grid container item wrap="nowrap" alignItems="center">
             <UserContext.Consumer>
-              {({ currentDate, maxDate, minDate, setDate }) => (
+              {({ currentDate, maxDate, minDate, updateBooks }) => (
                 <DatePicker
                   variant="inline"
                   openTo="month"
                   views={["year", "month"]}
                   value={currentDate}
-                  onChange={(e) => setDate(e)}
+                  onChange={(e) => updateBooks(e)}
                   autoOk
                   minDate={minDate}
                   maxDate={maxDate}

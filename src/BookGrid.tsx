@@ -1,9 +1,16 @@
 import React from "react";
+import { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Container } from "@material-ui/core";
 import { UserContext } from "./UserContext";
 import BookCell from "./BookCell";
 import { IBook } from "../@types/index";
+import * as Scroll from "react-scroll";
+
+interface BookGridProps {
+  books: IBook[];
+  tags: Set<any>;
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,33 +31,39 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function BookGrid() {
+export default function BookGrid(props: BookGridProps) {
   const classes = useStyles();
+  const { books, tags } = props;
 
   return (
-    <UserContext.Consumer>
-      {({ currentBooks, tags }) => (
-        <Container className={classes.root} maxWidth="xl">
-          <Grid container className={classes.gridList} wrap="wrap" spacing={4}>
-            {currentBooks.map(function (book: IBook) {
-              return (
-                <BookCell
-                  imageURL={book.thumbnailUrl}
-                  authors={book.authors}
-                  title={book.title}
-                  desc={book.shortDescription}
-                  purchaseLink=""
-                  key={book.isbn}
-                />
-              );
-            })}
-            <Grid item xs={6} xl={4} />
-            <Grid item xs={6} xl={4} />
-            <Grid item xs={6} xl={4} />
-            <Grid item xs={6} xl={4} style={{ height: 100 }} />
-          </Grid>
-        </Container>
-      )}
-    </UserContext.Consumer>
+    <Container className={classes.root} maxWidth="xl">
+      <Grid
+        container
+        className={classes.gridList}
+        wrap="wrap"
+        spacing={4}
+        id={"book-grid"}
+      >
+        {books.map(function (book: IBook) {
+          let commonTags = book.tags.filter((x) => tags.has(x));
+          if (commonTags.length > 0 || tags.size == 0) {
+            return (
+              <BookCell
+                imageURL={book.thumbnailUrl}
+                authors={book.authors}
+                title={book.title}
+                desc={book.shortDescription}
+                purchaseLink=""
+                key={book.isbn}
+              />
+            );
+          }
+        })}
+        <Grid item xs={6} xl={4} />
+        <Grid item xs={6} xl={4} />
+        <Grid item xs={6} xl={4} />
+        <Grid item xs={6} xl={4} style={{ height: 100 }} />
+      </Grid>
+    </Container>
   );
 }

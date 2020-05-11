@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect, useContext, useRef } from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import { Grid, Divider, Hidden } from "@material-ui/core";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
@@ -8,6 +9,7 @@ import MobileHeader from "../src/MobileHeader";
 import BookGrid from "../src/BookGrid";
 import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
+import { UserContext } from "../src/UserContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,7 +49,14 @@ const StyledDivider = withStyles({
 
 const Home = () => {
   const classes = useStyles();
-  const sm = useMediaQuery("(min-width:600px)");
+  const { currentBooks, tags } = useContext(UserContext);
+  const gridRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const node = gridRef.current;
+    if (node) {
+      node.scrollTo(0, 0);
+    }
+  }, [currentBooks, tags]);
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -71,8 +80,19 @@ const Home = () => {
               </Hidden>
             </Grid>
 
-            <Grid item xs={10} md={10} lg={12} className={classes.bookGrid}>
-              <BookGrid />
+            <Grid
+              item
+              xs={10}
+              md={10}
+              lg={12}
+              className={classes.bookGrid}
+              ref={gridRef}
+            >
+              <UserContext.Consumer>
+                {({ currentBooks, tags }) => (
+                  <BookGrid books={currentBooks} tags={tags} />
+                )}
+              </UserContext.Consumer>
             </Grid>
           </Grid>
           <Hidden smDown>

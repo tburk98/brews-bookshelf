@@ -64,9 +64,14 @@ const useStyles = makeStyles((theme) => ({
   },
   bookTile: {
     borderBottom: `1px solid ${theme.palette.divider}`,
+    width: "100%",
+    alignItems: "center",
     height: 285,
+    marginTop: 20,
     [theme.breakpoints.down("sm")]: {
-      height: 325,
+      height: "auto",
+      alignItems: "flex-start",
+      marginTop: 35,
     },
   },
   root: {
@@ -79,27 +84,23 @@ const useStyles = makeStyles((theme) => ({
       height: 320,
     },
   },
-}));
-
-const StyledBookTile = withStyles({
-  root: {
-    overflow: "visible",
-    width: "100%",
-    alignItems: "center",
-    marginTop: 20,
+  container: {
+    [theme.breakpoints.down("sm")]: {
+      paddingBottom: 30,
+    },
   },
-})(Grid);
+}));
 
 export default function BookCell(props: BookCellProps) {
   const classes = useStyles();
   const { imageURL, desc, title, authors, purchaseLink } = props;
   return (
-    <StyledBookTile className={classes.bookTile} item container md={6} xl={4}>
+    <Grid className={classes.bookTile} item container md={6} xl={4}>
       <motion.div
         animate={{ opacity: [0, 1], y: [20, 0] }}
         transition={{ ease: [0.6, -0.05, 0.01, 0.99], duration: 0.5 }}
       >
-        <Grid container spacing={2}>
+        <Grid container spacing={1} className={classes.container}>
           <Grid item container xs={5}>
             <motion.img
               src={imageURL}
@@ -126,6 +127,6 @@ export default function BookCell(props: BookCellProps) {
           </Grid>
         </Grid>
       </motion.div>
-    </StyledBookTile>
+    </Grid>
   );
 }
