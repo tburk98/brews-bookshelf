@@ -61,7 +61,7 @@ const Home = () => {
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <Grid item container xs={12} justify="center" className={classes.root}>
-        <Grid item container justify="space-around" spacing={6} lg={11} xl={10}>
+        <Grid item container justify="space-around" spacing={5} lg={11} xl={10}>
           <Grid
             item
             container

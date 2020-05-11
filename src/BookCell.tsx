@@ -70,22 +70,17 @@ const useStyles = makeStyles((theme) => ({
     height: "auto",
     marginTop: 20,
     [theme.breakpoints.down("sm")]: {
-      height: "auto",
-      alignItems: "flex-start",
       marginTop: 35,
     },
   },
   root: {
     overflow: "visible",
-    height: 300,
     width: "100%",
     alignItems: "center",
     marginTop: 25,
-    [theme.breakpoints.down("sm")]: {
-      height: 320,
-    },
   },
   container: {
+    paddingBottom: 20,
     [theme.breakpoints.down("sm")]: {
       paddingBottom: 30,
     },
