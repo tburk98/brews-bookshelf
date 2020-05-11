@@ -55,18 +55,19 @@ const useStyles = makeStyles((theme) => ({
   },
   bookTitle: {
     fontWeight: 600,
-    minWidth: 178,
+    minWidth: 160,
   },
   bookDesc: {
     color: theme.palette.text.secondary,
     fontSize: "0.75rem",
     minWidth: 170,
+    maxWidth: 90,
   },
   bookTile: {
     borderBottom: `1px solid ${theme.palette.divider}`,
     width: "100%",
-    alignItems: "center",
-    height: 285,
+    alignItems: "flex-start",
+    height: "auto",
     marginTop: 20,
     [theme.breakpoints.down("sm")]: {
       height: "auto",
@@ -76,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
   },
   root: {
     overflow: "visible",
-    height: 285,
+    height: 300,
     width: "100%",
     alignItems: "center",
     marginTop: 25,
