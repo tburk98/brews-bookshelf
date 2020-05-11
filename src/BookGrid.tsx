@@ -28,9 +28,9 @@ export default function BookGrid() {
   const classes = useStyles();
 
   return (
-    <Container className={classes.root} maxWidth="xl">
-      <UserContext.Consumer>
-        {({ currentBooks, tags }) => (
+    <UserContext.Consumer>
+      {({ currentBooks, tags }) => (
+        <Container className={classes.root} maxWidth="xl">
           <Grid container className={classes.gridList} wrap="wrap" spacing={4}>
             {currentBooks.map(function (book: IBook) {
               return (
@@ -47,10 +47,10 @@ export default function BookGrid() {
             <Grid item xs={6} xl={4} />
             <Grid item xs={6} xl={4} />
             <Grid item xs={6} xl={4} />
-            <Grid item xs={6} xl={4} />
+            <Grid item xs={6} xl={4} style={{ height: 100 }} />
           </Grid>
-        )}
-      </UserContext.Consumer>
-    </Container>
+        </Container>
+      )}
+    </UserContext.Consumer>
   );
 }

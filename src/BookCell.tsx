@@ -55,6 +55,7 @@ const useStyles = makeStyles((theme) => ({
   },
   bookTitle: {
     fontWeight: 600,
+    minWidth: 178,
   },
   bookDesc: {
     color: theme.palette.text.secondary,
@@ -63,6 +64,10 @@ const useStyles = makeStyles((theme) => ({
   },
   bookTile: {
     borderBottom: `1px solid ${theme.palette.divider}`,
+    height: 285,
+    [theme.breakpoints.down("sm")]: {
+      height: "auto",
+    },
   },
   root: {
     overflow: "visible",
@@ -70,16 +75,18 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     alignItems: "center",
     marginTop: 25,
+    [theme.breakpoints.down("sm")]: {
+      height: 320,
+    },
   },
 }));
 
 const StyledBookTile = withStyles({
   root: {
     overflow: "visible",
-    height: 285,
     width: "100%",
     alignItems: "center",
-    marginTop: 25,
+    marginTop: 20,
   },
 })(Grid);
 
