@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
     borderBottom: `1px solid ${theme.palette.divider}`,
     height: 285,
     [theme.breakpoints.down("sm")]: {
-      height: "auto",
+      height: 325,
     },
   },
   root: {
