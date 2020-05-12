@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
   },
   bookDesc: {
     color: theme.palette.text.secondary,
-    fontSize: "0.75rem",
+    fontSize: "0.78rem",
     minWidth: 170,
     maxWidth: 90,
   },

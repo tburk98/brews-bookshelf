@@ -71,7 +71,7 @@ export const themeDark = createMuiTheme({
       contrastText: "#ffcc00",
     },
     background: {
-      default: "#151E29",
+      default: "#121212",
     },
     divider: "#F5F8FC",
     // Used by `getContrastText()` to maximize the contrast between

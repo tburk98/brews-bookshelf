@@ -5,16 +5,28 @@ import { Grid, TextField, Paper, Chip } from "@material-ui/core";
 import { ITag } from "../@types/index";
 import { UserContext } from "./UserContext";
 
+interface TagPickerProps {
+  mobile: boolean;
+}
+
 const useStyles = makeStyles((theme) => ({
   title: {
     margin: theme.spacing(4, 0, 1),
     width: "auto",
     fontSize: "1.1rem",
+    [theme.breakpoints.down("sm")]: {
+      margin: 0,
+      fontSize: "1.4rem",
+    },
   },
   tag: {
     margin: theme.spacing(0.5),
     fontSize: "0.7rem",
-    height: 28,
+    height: 32,
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "0.8rem",
+      margin: "0 5px 8px 0",
+    },
   },
   tagBox: {
     width: 300,
@@ -28,20 +40,34 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: -8,
     marginTop: 0,
     alignSelf: "flex-start",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+      margin: 0,
+      padding: 0,
+      paddingTop: 16,
+      // minHeight: 200,
+      alignContent: "flex-start",
+    },
+  },
+  root: {
+    [theme.breakpoints.down("sm")]: {
+      width: 200,
+    },
   },
 }));
 
-export default function TagPicker() {
+export default function TagPicker({ mobile = false }: TagPickerProps) {
   const classes = useStyles();
 
   return (
-    <Grid item container>
+    <Grid item container className={classes.root}>
       <Typography className={classes.title} variant="h5">
         Filter by Tag
       </Typography>
+
       <Grid item container>
         <UserContext.Consumer>
-          {({ availableTags, tags, toggleTag, currentDate }) => (
+          {({ availableTags, tags, toggleTag }) => (
             <Paper component="ul" className={classes.tagBox}>
               {availableTags.map(function (tag, index) {
                 return (

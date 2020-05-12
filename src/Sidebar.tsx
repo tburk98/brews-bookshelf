@@ -96,7 +96,7 @@ export default function Sidebar() {
           <MonthPicker />
         </Grid>
         <Grid item container>
-          <TagPicker />
+          <TagPicker mobile={false} />
         </Grid>
       </Grid>
     </Grid>

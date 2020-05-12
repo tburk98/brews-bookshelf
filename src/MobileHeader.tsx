@@ -1,6 +1,15 @@
 import React from "react";
 import { makeStyles, withStyles, fade } from "@material-ui/core/styles";
-import { Grid, Typography, Divider, InputAdornment } from "@material-ui/core";
+import {
+  Grid,
+  Typography,
+  Divider,
+  InputAdornment,
+  Chip,
+  Paper,
+  AppBar,
+  Container,
+} from "@material-ui/core";
 import { DatePicker } from "@material-ui/pickers";
 import ExpandIcon from "@material-ui/icons/ExpandMore";
 import ArrowLink from "./ArrowLink";
@@ -16,8 +25,10 @@ import { UserContext } from "./UserContext";
 const useStyles = makeStyles((theme) => ({
   brewsBookshelf: {
     fontFamily: "Literata",
-    marginTop: 20,
-    fontSize: "1.2rem",
+    fontSize: "2.4rem",
+    height: "100px",
+    marginBottom: 8,
+    marginTop: 50,
   },
   dateTextField: {
     fontWeight: 600,
@@ -28,11 +39,46 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.default,
   },
   divider: {
-    width: "calc(100% + 28px)",
-    marginLeft: "-8px",
-    height: 2,
-    marginTop: 10,
+    width: "100%",
+    marginLeft: 8,
+    height: 0,
+    marginTop: 4,
     color: theme.palette.text.primary,
+  },
+  tag: {
+    margin: theme.spacing(0.5),
+    fontSize: "0.7rem",
+    height: 28,
+  },
+  tagBox: {
+    width: "100vw",
+    display: "flex",
+    justifyContent: "flex-start",
+    listStyle: "none",
+    overflowX: "scroll",
+    flexWrap: "nowrap",
+    boxShadow: "none",
+    margin: 0,
+    padding: "10px 0",
+    backgroundColor: theme.palette.grey[100],
+    borderRadius: 0,
+  },
+  appbar: {
+    backgroundColor: "white",
+  },
+  hero: {
+    height: 400,
+    width: "100vw",
+  },
+  linkContainer: {
+    height: 78,
+  },
+  link: {
+    marginTop: 30,
+    marginRight: 20,
+  },
+  desc: {
+    maxWidth: 240,
   },
 }));
 
@@ -40,63 +86,54 @@ export default function MobileHeader() {
   const classes = useStyles();
 
   return (
-    <Grid container item className={classes.root}>
+    <Container>
       <Grid
         item
         container
-        xs={11}
-        justify="space-between"
-        alignItems="flex-end"
+        xs={12}
+        className={classes.hero}
+        justify="center"
+        alignContent="flex-start"
       >
-        <Grid item>
+        <Grid
+          container
+          item
+          xs={11}
+          justify="flex-start"
+          className={classes.linkContainer}
+        >
+          <div className={classes.link}>
+            <ArrowLink
+              title="Morning Brew"
+              URL="https://www.morningbrew.com/daily/stories"
+            />
+          </div>
+        </Grid>
+
+        <Grid item xs={11}>
           <Typography variant="h4" className={classes.brewsBookshelf}>
             Brew's
-            <br />
-            Bookshelf
+            <br /> Bookshelf
+          </Typography>
+          <Typography variant="body2" className={classes.desc}>
+            Brew staff's top recommended books, published every month.
           </Typography>
         </Grid>
-        <Grid item>
-          <ArrowLink
-            title="Morning Brew"
-            URL="https://www.morningbrew.com/daily/stories"
-          />
-        </Grid>
-        <Grid item container xs={12}>
-          <Grid container item wrap="nowrap" alignItems="center">
-            <UserContext.Consumer>
-              {({ currentDate, maxDate, minDate, updateBooks }) => (
-                <DatePicker
-                  variant="inline"
-                  openTo="month"
-                  views={["year", "month"]}
-                  value={currentDate}
-                  onChange={(e) => updateBooks(e)}
-                  autoOk
-                  minDate={minDate}
-                  maxDate={maxDate}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                  InputProps={{
-                    disableUnderline: true,
-                    fullWidth: false,
-                    multiline: true,
-                    classes: { root: classes.dateTextField },
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <ExpandIcon />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              )}
-            </UserContext.Consumer>
-          </Grid>
-        </Grid>
-        <Grid item container xs={12}>
-          <Divider className={classes.divider} />
-        </Grid>
+        {/* <Grid
+          container
+          item
+          xs={11}
+          justify="flex-start"
+          className={classes.linkContainer}
+        >
+          <div className={classes.link}>
+            <ArrowLink
+              title="Morning Brew"
+              URL="https://www.morningbrew.com/daily/stories"
+            />
+          </div>
+        </Grid> */}
       </Grid>
-    </Grid>
+    </Container>
   );
 }

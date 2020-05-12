@@ -25,6 +25,10 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "100%",
     height: "calc(100vh - 94px)",
     paddingBottom: 50,
+    [theme.breakpoints.down("sm")]: {
+      height: "auto",
+      paddingBottom: 0,
+    },
   },
   fillerCell: {
     borderBottom: `1px solid ${theme.palette.divider}`,
