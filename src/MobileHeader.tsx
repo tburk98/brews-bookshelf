@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect, useRef, useContext } from "react";
 import { makeStyles, withStyles, fade } from "@material-ui/core/styles";
 import {
   Grid,
@@ -28,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "2.4rem",
     height: "100px",
     marginBottom: 8,
-    marginTop: 50,
+    marginTop: 30,
   },
   dateTextField: {
     fontWeight: 600,
@@ -67,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "white",
   },
   hero: {
-    height: 400,
+    height: 350,
     width: "100vw",
   },
   linkContainer: {
@@ -84,6 +85,15 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MobileHeader() {
   const classes = useStyles();
+  const { currentDate } = useContext(UserContext);
+  const gridRefMobile = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const nodeMobile = gridRefMobile.current;
+    if (nodeMobile) {
+      nodeMobile.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  }, [currentDate]);
 
   return (
     <Container>
@@ -115,7 +125,11 @@ export default function MobileHeader() {
             Brew's
             <br /> Bookshelf
           </Typography>
-          <Typography variant="body2" className={classes.desc}>
+          <Typography
+            variant="body2"
+            className={classes.desc}
+            ref={gridRefMobile}
+          >
             Brew staff's top recommended books, published every month.
           </Typography>
         </Grid>

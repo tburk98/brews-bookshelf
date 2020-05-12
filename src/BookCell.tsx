@@ -118,7 +118,7 @@ export default function BookCell(props: BookCellProps) {
               </Typography>
             </Grid>
             <Grid item>
-              <ArrowLink title="Buy Online" URL="" />
+              <ArrowLink title="Buy Online" URL={purchaseLink} />
             </Grid>
           </Grid>
         </Grid>

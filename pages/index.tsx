@@ -90,30 +90,10 @@ const StyledDividerMobile = withStyles({
 const Home = () => {
   const classes = useStyles();
   const { currentBooks, tags } = useContext(UserContext);
-  const gridRef = useRef<HTMLDivElement>(null);
-  const gridRefMobile = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const node = gridRef.current;
-    if (node) {
-      node.scrollTo(0, 0);
-    }
-
-    const nodeMobile = gridRefMobile.current;
-    if (nodeMobile) {
-      nodeMobile.scrollTo(0, 0);
-    }
-  }, [currentBooks, tags]);
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <Grid
-        item
-        container
-        xs={12}
-        justify="center"
-        className={classes.root}
-        ref={gridRefMobile}
-      >
+      <Grid item container xs={12} justify="center" className={classes.root}>
         <Hidden smDown>
           <Grid
             item
@@ -136,14 +116,7 @@ const Home = () => {
                 <StyledDivider />
               </Grid>
 
-              <Grid
-                item
-                xs={10}
-                md={10}
-                lg={12}
-                className={classes.bookGrid}
-                ref={gridRef}
-              >
+              <Grid item xs={10} md={10} lg={12} className={classes.bookGrid}>
                 <UserContext.Consumer>
                   {({ currentBooks, tags }) => (
                     <BookGrid books={currentBooks} tags={tags} />
