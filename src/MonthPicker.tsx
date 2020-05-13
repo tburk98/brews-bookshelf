@@ -1,13 +1,9 @@
 import React from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import { Grid, TextField } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import { DatePicker } from "@material-ui/pickers";
 import { UserContext } from "./UserContext";
-import { IMonth } from "../@types/index";
-import IconButton from "@material-ui/core/IconButton";
-import Previous from "@material-ui/icons/ChevronLeft";
-import Next from "@material-ui/icons/ChevronRight";
 
 const useStyles = makeStyles((theme) => ({
   title: {

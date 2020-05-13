@@ -1,5 +1,4 @@
 import React from "react";
-import { useEffect, useContext, useRef } from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import {
   Grid,
@@ -9,7 +8,6 @@ import {
   IconButton,
   Popover,
   Box,
-  Typography,
 } from "@material-ui/core";
 import PopupState, { bindTrigger, bindPopover } from "material-ui-popup-state";
 import ShelfHeader from "../src/ShelfHeader";
@@ -89,11 +87,11 @@ const StyledDividerMobile = withStyles({
 
 const Home = () => {
   const classes = useStyles();
-  const { currentBooks, tags } = useContext(UserContext);
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <Grid item container xs={12} justify="center" className={classes.root}>
+        {/* Desktop Only */}
         <Hidden smDown>
           <Grid
             item
@@ -130,6 +128,7 @@ const Home = () => {
             </Grid>
           </Grid>
         </Hidden>
+        {/* Mobile Only */}
         <Hidden mdUp>
           <MobileHeader />
           <Grid

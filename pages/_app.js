@@ -6,8 +6,6 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { theme, themeDark } from "../src/theme";
 import { UserContextProvider, UserContext } from "../src/UserContext";
 
-// _app.js - inject theme here, query dark mode
-
 function AppNoCtx(props) {
   const { Component, pageProps } = props;
 

@@ -2,6 +2,7 @@ import React from "react";
 import { createContext } from "react";
 import { books } from "../pages/api/books";
 
+//  Default State
 const initialState = {
   books: [],
   currentBooks: [],
@@ -19,6 +20,8 @@ const initialState = {
 export const UserContext = createContext(initialState);
 
 export const UserContextProvider = (props) => {
+  // Get initial dark mode
+  // Priority: Returning user's preference -> user's system settings -> default to light
   var initialDarkMode = false;
   React.useEffect(() => {
     let isReturningUser = "dark" in localStorage;
@@ -37,6 +40,9 @@ export const UserContextProvider = (props) => {
     console.log(initialDarkMode);
   }, []);
 
+  //  ---- FUNCTION DEFENITIONS ----
+
+  // Function to toggle theme
   const toggleTheme = () => {
     setState((state) => ({
       ...state,
@@ -44,6 +50,7 @@ export const UserContextProvider = (props) => {
     }));
   };
 
+  // Function to toggle tag off/on
   const toggleTag = (title: string, tags: Set<any>) => {
     let temp = new Set(tags);
     console.log(state.tags);
@@ -59,6 +66,7 @@ export const UserContextProvider = (props) => {
     }));
   };
 
+  // Function to update books/tags in the grid when date changes
   const updateBooks = (date: Date) => {
     var currentBooks = state.books;
     var newTags = new Set();
@@ -82,7 +90,10 @@ export const UserContextProvider = (props) => {
     }));
   };
 
+  //  ---- FIRST LOAD THINGS ----
   let newTags = new Set();
+
+  // Get all recommendation dates, pull out min and max dates
   let dates = [];
   books.forEach((b) => {
     dates.push(new Date(b.recommendDate.year, b.recommendDate.month));
@@ -91,16 +102,19 @@ export const UserContextProvider = (props) => {
   let maxDate = new Date(Math.max.apply(null, dates));
   let minDate = new Date(Math.min.apply(null, dates));
 
+  // Get all books for the latest (max) month's recommendations
   let currentBooks = books.filter(
     (book) =>
       book.recommendDate.month === maxDate.getMonth() &&
       book.recommendDate.year === maxDate.getFullYear()
   );
 
+  // Get current month's tags
   currentBooks.forEach((b) => {
     b.tags.forEach(newTags.add, newTags);
   });
 
+  // Initliaze state
   const [state, setState] = React.useState({
     ...initialState,
     books: books,
@@ -115,6 +129,7 @@ export const UserContextProvider = (props) => {
     darkMode: initialDarkMode,
   });
 
+  // Hook to update local storage when theme is toggled
   React.useEffect(() => {
     localStorage.setItem("dark", JSON.stringify(state.darkMode));
     console.log("updating dark mode: " + JSON.stringify(state.darkMode));

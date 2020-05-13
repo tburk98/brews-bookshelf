@@ -1,9 +1,7 @@
 import React from "react";
 import { makeStyles, withStyles, fade } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
 import { Chip, Paper } from "@material-ui/core";
-import { ITag } from "../@types/index";
 import { UserContext } from "./UserContext";
 
 const monthNames = [
@@ -73,7 +71,7 @@ export default function ShelfHeader() {
       <div className={classes.tagBar}>
         <Typography className={classes.title} variant="h5">
           <UserContext.Consumer>
-            {({ currentDate, maxDate }) =>
+            {({ currentDate }) =>
               monthNames[currentDate.getMonth()] +
               " " +
               currentDate.getFullYear()
@@ -81,7 +79,7 @@ export default function ShelfHeader() {
           </UserContext.Consumer>
         </Typography>
         <UserContext.Consumer>
-          {({ availableTags, tags }) => (
+          {({ tags }) => (
             <Paper component="ul" className={classes.tagRow}>
               {Array.from(tags).map((title: string) => {
                 return (

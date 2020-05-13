@@ -1,8 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import { Grid, TextField, Paper, Chip } from "@material-ui/core";
-import { ITag } from "../@types/index";
+import { Grid, Paper, Chip } from "@material-ui/core";
 import { UserContext } from "./UserContext";
 
 interface TagPickerProps {
@@ -45,7 +44,6 @@ const useStyles = makeStyles((theme) => ({
       margin: 0,
       padding: 0,
       paddingTop: 16,
-      // minHeight: 200,
       alignContent: "flex-start",
     },
   },

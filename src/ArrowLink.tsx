@@ -1,6 +1,11 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
+type ArrowLinkProps = {
+  title: string;
+  URL: string;
+};
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -15,11 +20,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "0.78rem",
   },
 }));
-
-type ArrowLinkProps = {
-  title: string;
-  URL: string;
-};
 
 const ArrowLink = ({ title, URL }: ArrowLinkProps) => {
   const classes = useStyles();

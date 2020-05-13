@@ -15,12 +15,8 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     margin: theme.spacing(5, 0, 3),
     height: "100vh",
-    // maxWidth: "315px",
-    // minWidth: "290px",
-    // width: "18vw",
     width: "100%",
     zIndex: 12,
-    // marginLeft: 10,
   },
   button: {
     marginLeft: -12,

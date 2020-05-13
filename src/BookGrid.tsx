@@ -1,11 +1,8 @@
 import React from "react";
-import { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Container } from "@material-ui/core";
-import { UserContext } from "./UserContext";
 import BookCell from "./BookCell";
 import { IBook } from "../@types/index";
-import * as Scroll from "react-scroll";
 
 interface BookGridProps {
   books: IBook[];
@@ -29,9 +26,6 @@ const useStyles = makeStyles((theme) => ({
       height: "auto",
       paddingBottom: 0,
     },
-  },
-  fillerCell: {
-    borderBottom: `1px solid ${theme.palette.divider}`,
   },
 }));
 
