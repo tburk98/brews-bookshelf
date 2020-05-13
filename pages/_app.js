@@ -34,12 +34,14 @@ function AppNoCtx(props) {
       </Head>
 
       <UserContext.Consumer>
-        {({ darkMode }) => (
-          <ThemeProvider theme={darkMode ? themeDark : theme}>
-            <CssBaseline />
-            <Component {...pageProps} />
-          </ThemeProvider>
-        )}
+        {({ darkMode }) => {
+          return (
+            <ThemeProvider theme={darkMode ? themeDark : theme}>
+              <CssBaseline />
+              <Component {...pageProps} />
+            </ThemeProvider>
+          );
+        }}
       </UserContext.Consumer>
     </React.Fragment>
   );

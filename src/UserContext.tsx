@@ -1,6 +1,5 @@
 import React from "react";
 import { createContext } from "react";
-import { IBook } from "../@types/index";
 import { books } from "../pages/api/books";
 
 const initialState = {
@@ -20,6 +19,24 @@ const initialState = {
 export const UserContext = createContext(initialState);
 
 export const UserContextProvider = (props) => {
+  var initialDarkMode = false;
+  React.useEffect(() => {
+    let isReturningUser = "dark" in localStorage;
+    let savedMode = JSON.parse(localStorage.getItem("dark"));
+    if (isReturningUser) {
+      initialDarkMode = savedMode;
+    } else if (window.matchMedia) {
+      initialDarkMode = window.matchMedia("(prefers-color-scheme: dark)")
+        .matches;
+    }
+    localStorage.setItem("dark", JSON.stringify(initialDarkMode));
+    setState((state) => ({
+      ...state,
+      darkMode: initialDarkMode,
+    }));
+    console.log(initialDarkMode);
+  }, []);
+
   const toggleTheme = () => {
     setState((state) => ({
       ...state,
@@ -95,7 +112,13 @@ export const UserContextProvider = (props) => {
     toggleTheme: toggleTheme,
     toggleTag: toggleTag,
     updateBooks: updateBooks,
+    darkMode: initialDarkMode,
   });
+
+  React.useEffect(() => {
+    localStorage.setItem("dark", JSON.stringify(state.darkMode));
+    console.log("updating dark mode: " + JSON.stringify(state.darkMode));
+  }, [state.darkMode]);
 
   return (
     <UserContext.Provider value={state}>{props.children}</UserContext.Provider>
