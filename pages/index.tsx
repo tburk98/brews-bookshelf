@@ -59,6 +59,7 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: 28,
   },
   stickyHeader: {
+    zIndex: 10,
     position: "sticky",
     top: 0,
     backgroundColor: theme.palette.background.default,
@@ -87,6 +88,25 @@ const StyledDividerMobile = withStyles({
 
 const Home = () => {
   const classes = useStyles();
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
+    null
+  );
+  const { tags } = React.useContext(UserContext);
+
+  const handlePopover = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popover" : undefined;
+
+  React.useEffect(() => {
+    setAnchorEl(null);
+  }, [tags]);
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -170,30 +190,29 @@ const Home = () => {
               </UserContext.Consumer>
             </Grid>
             <Grid container item xs={3} alignItems="flex-end" justify="center">
-              <PopupState variant="popover">
-                {(popupState) => (
-                  <div>
-                    <IconButton {...bindTrigger(popupState)}>
-                      <FilterListIcon />
-                    </IconButton>
-                    <Popover
-                      {...bindPopover(popupState)}
-                      anchorOrigin={{
-                        vertical: "bottom",
-                        horizontal: "center",
-                      }}
-                      transformOrigin={{
-                        vertical: "top",
-                        horizontal: "center",
-                      }}
-                    >
-                      <Box p={2}>
-                        <TagPicker mobile />
-                      </Box>
-                    </Popover>
-                  </div>
-                )}
-              </PopupState>
+              <div>
+                <IconButton onClick={handlePopover}>
+                  <FilterListIcon />
+                </IconButton>
+                <Popover
+                  id={id}
+                  open={open}
+                  anchorEl={anchorEl}
+                  onClose={handleClose}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "center",
+                  }}
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "center",
+                  }}
+                >
+                  <Box p={2}>
+                    <TagPicker mobile />
+                  </Box>
+                </Popover>
+              </div>
             </Grid>
             <Grid item xs={12}>
               <StyledDividerMobile />

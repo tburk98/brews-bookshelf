@@ -9,7 +9,7 @@ type ArrowLinkProps = {
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
-    alignItems: "center",
+    alignItems: "baseline",
     height: "100%",
   },
   link: {

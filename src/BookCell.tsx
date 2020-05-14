@@ -102,7 +102,7 @@ export default function BookCell(props: BookCellProps) {
               src={imageURL}
               alt="book cover"
               className={classes.bookImage}
-              whileHover={{ y: -10 }}
+              whileHover={{ y: -10, z: 0 }}
             />
           </Grid>
           <Grid item container xs={7} alignContent="flex-start" spacing={2}>

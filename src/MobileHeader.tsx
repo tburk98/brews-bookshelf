@@ -2,6 +2,9 @@ import React from "react";
 import { useEffect, useRef, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Typography, Container } from "@material-ui/core";
+import IconButton from "@material-ui/core/IconButton";
+import Sun from "@material-ui/icons/WbSunny";
+import Moon from "@material-ui/icons/Brightness3";
 import ArrowLink from "./ArrowLink";
 import { UserContext } from "./UserContext";
 
@@ -11,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "2.4rem",
     height: "100px",
     marginBottom: 8,
-    marginTop: 30,
+    // marginTop: 20,
   },
   dateTextField: {
     fontWeight: 600,
@@ -26,18 +29,21 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.primary,
   },
   hero: {
-    height: 350,
+    height: 300,
     width: "100vw",
   },
   linkContainer: {
-    height: 78,
+    height: 95,
   },
-  link: {
-    marginTop: 30,
-    marginRight: 20,
-  },
+  link: {},
   desc: {
     maxWidth: 240,
+  },
+  button: {
+    marginLeft: -12,
+    "&:hover": {
+      backgroundColor: "transparent",
+    },
   },
 }));
 
@@ -67,7 +73,8 @@ export default function MobileHeader() {
           container
           item
           xs={11}
-          justify="flex-start"
+          justify="space-between"
+          alignItems="center"
           className={classes.linkContainer}
         >
           <div className={classes.link}>
@@ -76,6 +83,25 @@ export default function MobileHeader() {
               URL="https://www.morningbrew.com/daily/stories"
             />
           </div>
+          <UserContext.Consumer>
+            {({ darkMode, toggleTheme }) => (
+              <label htmlFor="icon-button-file">
+                <IconButton
+                  color="primary"
+                  aria-label="toggle dark mode"
+                  component="span"
+                  onClick={toggleTheme}
+                  className={classes.button}
+                >
+                  {darkMode ? (
+                    <Moon style={{ transform: "rotate(150deg)" }} />
+                  ) : (
+                    <Sun />
+                  )}
+                </IconButton>
+              </label>
+            )}
+          </UserContext.Consumer>
         </Grid>
 
         <Grid item xs={11}>

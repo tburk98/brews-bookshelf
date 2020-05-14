@@ -40,26 +40,11 @@ const useStyles = makeStyles((theme) => ({
       WebkitBackdropFilter: "saturate(180%) blur(15px)",
     },
   },
-
   tagBar: {
     height: 85,
     display: "flex",
     justifyContent: "flex-start",
     alignItems: "flex-end",
-  },
-  tagRow: {
-    display: "flex",
-    justifyContent: "flex-start",
-    listStyle: "none",
-    padding: theme.spacing(0.5),
-    margin: "0 0 -6px 4px",
-    background: "transparent",
-    boxShadow: "none",
-  },
-  tag: {
-    margin: theme.spacing(0.5),
-    fontSize: "0.7rem",
-    height: 28,
   },
 }));
 
@@ -78,24 +63,6 @@ export default function ShelfHeader() {
             }
           </UserContext.Consumer>
         </Typography>
-        <UserContext.Consumer>
-          {({ tags }) => (
-            <Paper component="ul" className={classes.tagRow}>
-              {Array.from(tags).map((title: string) => {
-                return (
-                  <li key={title}>
-                    <Chip
-                      variant="outlined"
-                      color="primary"
-                      label={title}
-                      className={classes.tag}
-                    />
-                  </li>
-                );
-              })}
-            </Paper>
-          )}
-        </UserContext.Consumer>
       </div>
     </div>
   );

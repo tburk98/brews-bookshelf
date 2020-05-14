@@ -57,6 +57,7 @@ export const UserContextProvider = (props) => {
     if (temp.has(title)) {
       temp.delete(title);
     } else {
+      temp.clear();
       temp.add(title);
     }
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import { Container, Grid, Button } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import Sun from "@material-ui/icons/WbSunny";
 import Moon from "@material-ui/icons/Brightness3";
@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 20,
     display: "flex",
     width: "100%",
+    alignItems: "center",
   },
   brewsBookshelf: {
     fontFamily: "Literata",

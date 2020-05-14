@@ -35,13 +35,7 @@ export default function BookGrid(props: BookGridProps) {
 
   return (
     <Container className={classes.root} maxWidth="xl">
-      <Grid
-        container
-        className={classes.gridList}
-        wrap="wrap"
-        spacing={4}
-        id={"book-grid"}
-      >
+      <Grid container className={classes.gridList} wrap="wrap" id={"book-grid"}>
         {books.map(function (book: IBook) {
           let commonTags = book.tags.filter((x) => tags.has(x));
           if (commonTags.length > 0 || tags.size == 0) {
