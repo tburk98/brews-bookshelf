@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.up("md")]: {
       marginTop: -85,
-      paddingTop: 105,
+      paddingTop: 90,
     },
     [theme.breakpoints.down("sm")]: {
       overflow: "visible",

@@ -80,9 +80,10 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 25,
   },
   container: {
-    paddingBottom: 20,
+    paddingBottom: 24,
+    paddingTop: 24,
     [theme.breakpoints.down("sm")]: {
-      paddingBottom: 30,
+      paddingBottom: 40,
     },
   },
 }));
