@@ -61,7 +61,6 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
     fontSize: "0.78rem",
     minWidth: 170,
-    maxWidth: 90,
   },
   bookTile: {
     borderBottom: `1px solid ${theme.palette.divider}`,
@@ -82,6 +81,7 @@ const useStyles = makeStyles((theme) => ({
   container: {
     paddingBottom: 24,
     paddingTop: 24,
+    paddingRight: 12,
     [theme.breakpoints.down("sm")]: {
       paddingBottom: 40,
     },
